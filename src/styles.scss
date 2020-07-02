@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+@import '../node_modules/bootstrap/scss/bootstrap';
+
+:root {
+  --primary-color: #03dac6;
+  --secondary-color: #018786;
+  --light-color: #eee;
+  --dark-color: #111;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--dark-color);
+  color: var(--light-color);
+}

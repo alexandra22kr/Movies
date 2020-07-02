@@ -1,0 +1,12 @@
+<div class="wrapper">
+  <div class="cards">
+    <a routerLink="`${imdbID}`">
+      <div class="card" *ngFor="let post of posts">
+        <img [src]="post.Poster" />
+        <figcaption>
+          {{ post.Title }} <strong>{{ post.Year }}</strong>
+        </figcaption>
+      </div>
+    </a>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div>
+  <div class="md-form active-cyan mb-3">
+    <input [formControl]="queryField" id="keyword" class="form-control" type="text"
+    placeholder="Search..." aria-label="Search" autofocus>
+  </div>
+  <div class="wrapper">
+    <div class="cards">
+      <div class="card" *ngFor="let post of posts">
+        <a routerLink="tt1570728">
+          <img [src]="post.Poster" />
+          <figcaption> {{ post.Title }} <strong>{{ post.Year }}</strong></figcaption>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

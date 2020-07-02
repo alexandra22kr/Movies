@@ -1,0 +1,13 @@
+a {
+  text-decoration: none;
+}
+
+nav {
+  padding-left: 10vw;
+  padding-right: 10vw;
+  background: var(--primary-color);
+
+  a {
+    color: var(--dark-color);
+  }
+}
