@@ -14,12 +14,8 @@ import { PostService } from "./post/post.service";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
-  {
-    path: "movies",
-    component: MoviesComponent,
-    // canActivateChild: [CanActivateTeam],
-    children: [{ path: ":id/info", component: PostComponent }],
-  },
+  { path: "movies", component: MoviesComponent },
+  { path: "movies/:id/info", component: PostComponent },
   { path: "**", component: NotfoundComponent },
 ];
 
