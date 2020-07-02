@@ -1,11 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { SearchService } from "./search.service";
 import { FormControl } from "@angular/forms";
-import {
-  debounceTime,
-  distinctUntilChanged,
-  filter,
-} from "rxjs/operators";
+import { debounceTime, distinctUntilChanged, filter } from "rxjs/operators";
 import "rxjs/add/operator/switchMap";
 import { NgxSpinnerService } from "ngx-spinner";
 
@@ -17,29 +13,39 @@ import IPost from "./IPost";
   styleUrls: ["./movies.component.scss"],
 })
 export class MoviesComponent implements OnInit {
+  nothingFound: boolean = false;
   posts: IPost[] = [];
   queryField: FormControl = new FormControl();
-  constructor(private _apiService: SearchService, private SpinnerService: NgxSpinnerService) {}
+  constructor(
+    private _apiService: SearchService,
+    private SpinnerService: NgxSpinnerService
+  ) {}
 
   ngOnInit() {
+    this.nothingFound = false;
     this.queryField.valueChanges
-    .pipe(
-      debounceTime(1000),
-      distinctUntilChanged(),
-      filter((v) => v.trim())
+      .pipe(
+        debounceTime(1000),
+        distinctUntilChanged(),
+        filter((v) => v.trim())
       )
       .switchMap((query) => {
         this.SpinnerService.show();
-        return this._apiService.search(query)
+        return this._apiService.search(query);
       })
-      .subscribe((result) => {
-        if (result.status === 400) {
+      .subscribe(
+        (result) => {
+          if (result.json().Search) {
+            this.nothingFound = false;
+            this.posts = Array.from(result.json().Search);
+          } else this.nothingFound = true;
           this.SpinnerService.hide();
-          return;
-        } else {
-          this.posts = Array.from(result.json().Search);
+        },
+        (error) => {
+          console.log("error", error);
+          this.nothingFound = true;
           this.SpinnerService.hide();
         }
-      });
+      );
   }
 }

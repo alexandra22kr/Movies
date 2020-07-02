@@ -4,6 +4,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
 import { NgxSpinnerModule } from "ngx-spinner";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from "./app.component";
 import { PostComponent } from "./post/post.component";
@@ -33,7 +34,8 @@ const routes: Routes = [
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    BrowserAnimationsModule
   ],
   providers: [SearchService],
   bootstrap: [AppComponent],

@@ -1,17 +1,31 @@
 <div>
   <ngx-spinner></ngx-spinner>
   <div class="md-form active-cyan mb-3">
-    <input [formControl]="queryField" id="keyword" class="form-control" type="text"
-    placeholder="Search..." aria-label="Search" autofocus>
+    <input
+      [formControl]="queryField"
+      id="keyword"
+      class="form-control"
+      type="text"
+      placeholder="Search..."
+      aria-label="Search"
+      autofocus
+    />
   </div>
   <div class="wrapper">
-    <div class="cards">
-      <div class="card" *ngFor="let post of posts">
-        <a [routerLink]="[post.imdbID, 'info']">
-          <img [src]="post.Poster" />
-          <figcaption> {{ post.Title }} <strong>{{ post.Year }}</strong></figcaption>
-        </a>
-      </div>
+    <div *ngIf="nothingFound; else elseBlock">
+      <h3>Nothing was found :(</h3>
     </div>
+    <ng-template #elseBlock>
+      <div class="cards">
+        <div class="card" *ngFor="let post of posts">
+          <a [routerLink]="[post.imdbID, 'info']">
+            <img [src]="post.Poster" />
+            <figcaption>
+              {{ post.Title }} <strong>{{ post.Year }}</strong>
+            </figcaption>
+          </a>
+        </div>
+      </div>
+    </ng-template>
   </div>
 </div>

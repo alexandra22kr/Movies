@@ -52,17 +52,6 @@ h2 span {
 	margin-left: 10px;
 }
 
-h2:after {
-	content: '';
-	z-index: 1;
-	bottom: 50%;
-	margin-bottom: -2px;
-	height: 2px;
-	left: 0;
-	right: 0;
-	background: #373d47;
-}
-
 .cards {
 	flex-flow: row wrap;
 }
