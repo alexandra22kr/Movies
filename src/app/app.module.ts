@@ -10,7 +10,6 @@ import { HomeComponent } from "./home/home.component";
 import { NotfoundComponent } from "./notfound/notfound.component";
 import { MoviesComponent } from "./movies/movies.component";
 import { SearchService } from "./movies/search.service";
-import { PostService } from "./post/post.service";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -34,7 +33,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [SearchService, PostService],
+  providers: [SearchService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

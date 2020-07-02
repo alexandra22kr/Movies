@@ -34,7 +34,6 @@ export class MoviesComponent implements OnInit {
         } else {
           this.posts = Array.from(result.json().Search);
         }
-        console.log("posts", this.posts);
       });
   }
 }

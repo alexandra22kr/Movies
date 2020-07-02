@@ -1,16 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute} from '@angular/router';
 import { Subscription } from 'rxjs';
-import { FormControl } from "@angular/forms";
-import {
-  debounceTime,
-  distinctUntilChanged,
-  filter,
-} from "rxjs/operators";
+import { Http } from '@angular/http';
 import "rxjs/add/operator/switchMap";
 
 import IPostInfo from "./IPostInfo";
-import { PostService } from './post.service';
 
 @Component({
   selector: "app-post",
@@ -61,18 +55,17 @@ export class PostComponent implements OnInit {
     Response: "True",
   };
 
-  id: string = 'tt4154756';
+  id: string = '';
   private routeSubscription: Subscription;
 
-  constructor(private route: ActivatedRoute, private _apiService: PostService) {
+  constructor(private http: Http, private route: ActivatedRoute) {
     this.routeSubscription = route.params.subscribe(params=>this.id=params['id']);
   }
 
   ngOnInit(): void {
-    // console.log('post comp');
-    // this._apiService.searchMovieInfo('tt4154756').subscribe((data: any) => {
-    //   console.log('pooost: ', data);
-    //   this.post = data;
-    // });
+    let URL = `http://www.omdbapi.com/?apikey=2b04e489&i=${this.id}&plot=full`;
+    this.http.get(URL).subscribe((data: any) => {
+      this.post = data.json();
+    });
   }
 }
