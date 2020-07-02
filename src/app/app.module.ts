@@ -1,48 +1,44 @@
-// import "@angular/compiler";
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-// import { HttpClient } from '@angular/common/http';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpModule } from "@angular/http";
 
-import { AppComponent } from './app.component';
-import { PostComponent } from './post/post.component';
-import { PostsComponent } from './posts/posts.component';
-import { HomeComponent } from './home/home.component';
-import { NotfoundComponent } from './notfound/notfound.component';
-import { MoviesComponent } from './movies/movies.component';
-import { SearchService } from './movies/search.service';
-
-const itemRooutes: Routes = [
-  { path: ':id/info', component: PostComponent },
-];
+import { AppComponent } from "./app.component";
+import { PostComponent } from "./post/post.component";
+import { HomeComponent } from "./home/home.component";
+import { NotfoundComponent } from "./notfound/notfound.component";
+import { MoviesComponent } from "./movies/movies.component";
+import { SearchService } from "./movies/search.service";
+import { PostService } from "./post/post.service";
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'movies', component: MoviesComponent, children: itemRooutes },
-  { path: '**', component: NotfoundComponent}
+  { path: "", component: HomeComponent },
+  {
+    path: "movies",
+    component: MoviesComponent,
+    // canActivateChild: [CanActivateTeam],
+    children: [{ path: ":id/info", component: PostComponent }],
+  },
+  { path: "**", component: NotfoundComponent },
 ];
 
 @NgModule({
   declarations: [
-    // HttpModule,
-    // HttpClient,
     AppComponent,
     PostComponent,
-    PostsComponent,
     HomeComponent,
     NotfoundComponent,
-    MoviesComponent
+    MoviesComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     HttpModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  providers: [SearchService],
-  bootstrap: [AppComponent]
+  providers: [SearchService, PostService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

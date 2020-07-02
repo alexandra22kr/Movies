@@ -1,12 +1,12 @@
-<div>
-  <!-- <img src="" alt=""> -->
-  <h3>{{ post.Title }}</h3>
-  <p>{{ post.Released }}</p>
-  <p>{{ post.Director }}</p>
-  <p>{{ post.Actors }}</p>
-  <p>{{ post.Plot }}</p>
-  <p>{{ post.Metascore }}</p>
-  <p>{{ post.imdbRating }}</p>
+<div class="post">
+  <img [src]="post.Poster" />
+  <div>
+    <h3>{{ post.Title }}</h3>
+    <p><span>Released:</span> {{ post.Released }}</p>
+    <p><span>Director:</span> {{ post.Director }}</p>
+    <p><span>Actors:</span> {{ post.Actors }}</p>
+    <p><span>Plot:</span> {{ post.Plot }}</p>
+    <p><span>MetaScore:</span> {{ post.Metascore }}</p>
+    <p><span>imdbRating:</span> {{ post.imdbRating }}</p>
+  </div>
 </div>
-
-

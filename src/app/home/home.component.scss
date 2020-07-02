@@ -1,0 +1,9 @@
+button {
+  background: var(--primary-color);
+  outline: none;
+  transition: .3s;
+
+  &:hover{
+    background: var(--secondary-color);
+  }
+}

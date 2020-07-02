@@ -1,0 +1,13 @@
+.post {
+  display: flex;
+  justify-content: space-between;
+
+  img {
+    max-height: 300px;
+    margin-right: 15px;
+  }
+
+  span {
+    color: var(--primary-color);
+  }
+}
