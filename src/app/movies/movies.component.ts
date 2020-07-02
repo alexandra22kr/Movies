@@ -7,6 +7,7 @@ import {
   filter,
 } from "rxjs/operators";
 import "rxjs/add/operator/switchMap";
+import { NgxSpinnerService } from "ngx-spinner";
 
 import IPost from "./IPost";
 
@@ -18,21 +19,26 @@ import IPost from "./IPost";
 export class MoviesComponent implements OnInit {
   posts: IPost[] = [];
   queryField: FormControl = new FormControl();
-  constructor(private _apiService: SearchService) {}
+  constructor(private _apiService: SearchService, private SpinnerService: NgxSpinnerService) {}
 
   ngOnInit() {
     this.queryField.valueChanges
-      .pipe(
-        debounceTime(1000),
-        distinctUntilChanged(),
-        filter((v) => v.trim())
+    .pipe(
+      debounceTime(1000),
+      distinctUntilChanged(),
+      filter((v) => v.trim())
       )
-      .switchMap((query) => this._apiService.search(query))
+      .switchMap((query) => {
+        this.SpinnerService.show();
+        return this._apiService.search(query)
+      })
       .subscribe((result) => {
         if (result.status === 400) {
+          this.SpinnerService.hide();
           return;
         } else {
           this.posts = Array.from(result.json().Search);
+          this.SpinnerService.hide();
         }
       });
   }

@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
+import { NgxSpinnerModule } from "ngx-spinner";
 
 import { AppComponent } from "./app.component";
 import { PostComponent } from "./post/post.component";
@@ -32,6 +33,7 @@ const routes: Routes = [
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxSpinnerModule
   ],
   providers: [SearchService],
   bootstrap: [AppComponent],
