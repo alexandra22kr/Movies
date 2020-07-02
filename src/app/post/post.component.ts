@@ -65,9 +65,7 @@ export class PostComponent implements OnInit {
   private routeSubscription: Subscription;
 
   constructor(private route: ActivatedRoute, private _apiService: PostService) {
-    this.routeSubscription = route.params.subscribe(
-      (params) => (this.id = params["id"])
-    );
+    this.routeSubscription = route.params.subscribe(params=>this.id=params['id']);
   }
 
   ngOnInit(): void {
